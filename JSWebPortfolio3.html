@@ -2,139 +2,259 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Marcin Wiaderkowicz - GIS projects</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programming Projects – Marcin Wiaderkowicz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --ink: #1a1a1a; --ink-muted: #555; --ink-faint: #999;
+            --bg: #f8f6f1; --bg-card: #fff; --accent: #2a5caa;
+            --accent-light: #e8eef8; --border: rgba(0,0,0,0.08);
+            --radius: 16px;
+            --font-display: 'DM Serif Display', serif;
+            --font-body: 'DM Sans', sans-serif;
+        }
+        html { scroll-behavior: smooth; }
+        body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.6; min-height: 100vh; }
 
-<link rel="stylesheet" href="WebPortfolio3.css" type="text/css"/>
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; gap: 8px; padding: 18px 40px; background: rgba(248,246,241,0.88); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+        nav a { text-decoration: none; color: var(--ink-muted); font-size: 14px; font-weight: 400; padding: 6px 14px; border-radius: 100px; transition: all 0.2s; }
+        nav a:hover, nav a.active { color: var(--accent); background: var(--accent-light); }
+        nav .logo { font-family: var(--font-display); font-size: 18px; color: var(--ink); margin-right: auto; padding: 0; background: none; }
+        nav .logo:hover { background: none; color: var(--accent); }
 
-    
+        .page-header { padding: 140px 40px 60px; max-width: 900px; margin: 0 auto; }
+        .page-tag { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 20px; }
+        .page-tag::before { content: ''; display: block; width: 28px; height: 1.5px; background: var(--accent); }
+        h1 { font-family: var(--font-display); font-size: clamp(36px, 5vw, 60px); line-height: 1.1; color: var(--ink); margin-bottom: 20px; }
+        .page-intro { font-size: 18px; color: var(--ink-muted); max-width: 660px; line-height: 1.75; }
 
+        .projects { max-width: 1400px; margin: 0 auto; padding: 0 40px 120px; display: flex; flex-direction: column; gap: 60px; }
+
+        .project-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: box-shadow 0.25s; }
+        .project-card:hover { box-shadow: 0 12px 40px rgba(42,92,170,0.10); }
+
+        .project-body { padding: 36px 40px 32px; }
+
+        .project-tech { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+        .tech-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 100px; background: var(--accent-light); color: var(--accent); font-size: 12px; font-weight: 500; }
+        .tech-badge img { width: 16px; height: 16px; object-fit: contain; }
+
+        .project-title { font-family: var(--font-display); font-size: 26px; color: var(--ink); margin-bottom: 14px; }
+        .project-desc { font-size: 16px; color: var(--ink-muted); line-height: 1.75; margin-bottom: 16px; }
+        .project-desc a { color: var(--accent); text-decoration: none; }
+        .project-desc a:hover { text-decoration: underline; }
+
+        .project-features { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+        .project-features li { display: flex; gap: 10px; font-size: 15px; color: var(--ink-muted); line-height: 1.6; }
+        .project-features li::before { content: '→'; color: var(--accent); flex-shrink: 0; margin-top: 1px; }
+
+        .project-media { border-top: 1px solid var(--border); }
+        .project-media video, .project-media img { display: block; width: 100%; height: auto; }
+        .divider { height: 1px; background: var(--border); margin: 0; }
+
+        footer { border-top: 1px solid var(--border); padding: 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; max-width: 1400px; margin: 0 auto; }
+        .social-links { display: flex; gap: 12px; }
+        .social-link { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border); background: var(--bg-card); transition: all 0.2s; }
+        .social-link:hover { border-color: var(--accent); background: var(--accent-light); transform: translateY(-2px); }
+        .social-link img { width: 22px; height: 22px; object-fit: contain; }
+        .footer-copy { font-size: 12px; color: var(--ink-faint); }
+
+        .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .fade-in.visible { opacity: 1; transform: none; }
+    </style>
 </head>
 <body>
-<div id="main_container">  
 
+<nav>
+    <a class="logo" href="index.html">MW</a>
+    <a href="index.html">Home</a>
+    <a href="JSWebPortfolio2.html">GIS</a>
+    <a class="active" href="JSWebPortfolio3.html">Programming</a>
+    <a href="JSWebPortfolio4.html">Photovoltaic</a>
+</nav>
 
-    <a class="ai" href="index.html" style="text-decoration: none"><div class="opcje"> Main page</div></a>
+<div class="page-header">
+    <div class="page-tag">Projects</div>
+    <h1>Programming</h1>
+    <p class="page-intro">
+        I primarily write Python, and while working with web applications professionally I found them
+        increasingly interesting — so web development became my main programming direction.
+        I have worked with tkinter, psycopg2, Selenium, Django and GeoDjango.
+        A few projects are currently in progress and will be added here soon.
+    </p>
+</div>
 
-    <div id="glowne1" class="glowne1">
-        I mainly create code in core Python, while working with Web aplications in my work i found out it more intresting, so from this time this became my main programming route.
-        I have been working with: tkinter, psycopg, selenium, Django, GeoDjango.
-        In JavaScript,CSS,HTML i created this webpage, and some things in GeoDjango too,
-        Currently i have few opened projects within this technology i am gonna add the results here soon !
-    </div>
-    <br>
-    <br>
+<div class="projects">
 
-    <div class='hr'></div>
-
-    <div id="dev"class="glowne1 glowne2">
-        Technologies included to project down below: Python-GeoDjango, Postgres, Java Script, HTML5, CSS
-    </div>
-    <br>
-    <div  class="wideo1">
-        <video class="video " width="1280" height="720" autoplay loop muted >
-            <source src="geodjango.mp4" type="video/mp4" >
-        </video>
-    </div>
-    <br>
-    <br>
-    <br>
-    <br>
-
-    <div class='hr'></div>
-    <br>
-    <br>
-    <div id="dev"class="glowne1 glowne2">
-        Small testing project using Python   <img src="flask.png"  width="48px" height="48px" />
-        Flask framework it is simple create read application served on heroku server. No fronted framewok used here just HTML, CSS.
-
-       <a href="http://mcinek91.pythonanywhere.com/" >http://mcinek91.pythonanywhere.com/</a>
-    </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <div class='hr'></div>
-
-
-    <br>
-    <br>
-    <br>
-
-    <div id="dev"class="glowne1 glowne2">
-        Testing project using Python and Django <img src="django.png"  width="48px" height="48px" />framework Bootstrap as a frontend and Postgres database 
-         It is also include simple REST requests<img src="djangorest.png"  width="48px" height="48px" />
-    </div>
-
-    <br>
-
-
-    <div  class="wideo1">
-            <video class="video " width="1280" height="720" autoplay loop muted >
-                <source src="django.mp4" type="video/mp4" >
+    <div class="project-card fade-in">
+        <div class="project-body">
+            <div class="project-tech">
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">GeoDjango</span>
+                <span class="tech-badge">PostgreSQL</span>
+                <span class="tech-badge">JavaScript</span>
+                <span class="tech-badge">HTML5 / CSS</span>
+            </div>
+            <div class="project-title">GeoDjango Web Map Application</div>
+            <p class="project-desc">
+                A web-based GIS application built with Python and GeoDjango, serving spatial data
+                through a browser interface. The project combines a PostgreSQL/PostGIS database
+                with a Django backend and custom JavaScript frontend to display and interact with
+                geographic data.
+            </p>
+        </div>
+        <div class="project-media">
+            <video width="1280" height="720" autoplay loop muted playsinline>
+                <source src="geodjango.mp4" type="video/mp4">
             </video>
-            
-    </div>
-    <div class='wideo1'>
-        <img src="djangorestapp.png"  width="1280" height="720" />
-    </div>
-    <br>
-    <br>
-    <br>
-    <div class='hr'></div>
-    <br>
-    <br>
-
-
-    <div id="dev"class="glowne1 glowne2">
-     Small testing project using Python and Django <img src="django.png"  width="48px" height="48px" /> framework  <img src="bootstrap.png"  width="48px" height="48px" /> Bootstrap  as a frontend and <img src="postgresql.png"  width="48px" height="48px" /> Postgres database it also has delete option on each object in database 
-      
+        </div>
     </div>
 
-    <div  class="wideo1">
-        <video class="video " width="1280" height="720" autoplay loop muted >
-            <source src="smart.mp4" type="video/mp4" >
-        </video>
-
-    </div>
-    <br>
-    <br>
-    <br>
-    <div class='hr'></div>
-    <br>
-    <br>
-
-    <div id="dev"class="glowne1 glowne2">
-        Actually my biggest project, it is quite complex, it fully based on API from CRM provider to company which i have worked.
-        <br>
-        <li>1. Get data about client and just print it out on this panel</li>
-        <li>2. Make a request about documents which are placed in CRM, so if no specific documents in CRM - no documents in panel also</li>
-        <li>3. Payment documents are fully donwawdable from here, Panel has it`s own engine to fill up pdf schema documents based on CRM information, because in system payment documents are created on the fly.</li>
-        <li>4. Dashboard tab was invented to give clients view to their data in more representative way than from applications  provided by inverters produceres. Here i utilize Chart.js library.</li>
-        <li>5. Panel give users ability to send questions for specified topic to CRM, this question is send to system as an email but more precisyly to email which belongs to department who knows how to take care of this question.
-           <img src="django.png"  width="48px" height="48px" />  Django as backend, <img src="bootstrap.png"  width="48px" height="48px" />Bootstrap as a frontend and <img src="postgresql.png"  width="48px" height="48px" />Postgres database, <img src="chartjs.png"  width="48px" height="48px" />Chart.js for charts</li>
-         
-       </div>
-   
-       <div  class="wideo1">
-           <video class="video " width="1280" height="720" autoplay loop muted >
-               <source src="smartsolarapp.mp4" type="video/mp4" >
-           </video>
-   
-       </div>
-
-
-    <div id="koncowy">
-            
+    <div class="project-card fade-in">
+        <div class="project-body">
+            <div class="project-tech">
+                <span class="tech-badge"><img src="flask.png" alt="Flask"/>Flask</span>
+                <span class="tech-badge"><img src="mysql.png" alt="MySQL"/>MySQL</span>
+                <span class="tech-badge"><img src="python.png" alt="Python"/>Python</span>
+                <span class="tech-badge">HTML / CSS</span>
+            </div>
+            <div class="project-title">Flask an MySQL app</div>
+            <p class="project-desc">
+                A small testing project built with Flask — a lightweight Python web framework.
+                It is a simple create-and-read application with no frontend framework, using
+                only plain HTML and CSS, hosted on PythonAnywhere.
+                <br><br>
+                <a href="http://mcinek91.pythonanywhere.com/" target="_blank" rel="noopener">mcinek91.pythonanywhere.com ↗</a>
+            </p>
+        </div>
     </div>
 
+    <div class="project-card fade-in">
+        <div class="project-body">
+            <div class="project-tech">
+                <span class="tech-badge"><img src="django.png" alt="Django"/>Django</span>
+                <span class="tech-badge"><img src="djangorest.png" alt="DRF"/>Django REST Framework</span>
+                <span class="tech-badge"><img src="postgresql.png" alt="PostgreSQL"/>PostgreSQL</span>
+                <span class="tech-badge"><img src="react-brands-solid-full.svg" alt="React"/>React</span>
+            </div>
+            <div class="project-title">Django REST API Project</div>
+            <p class="project-desc">
+                A testing project using Django with React as the frontend and a PostgreSQL
+                database. It includes a simple REST API built with Django REST Framework,
+                demonstrating basic CRUD operations and serialisation.
+            </p>
+                <a href="https://react-production-60f0.up.railway.app/" target="_blank" rel="noopener">railway.app ↗</a>
 
-    
+        </div>
+        <div class="project-media">
+                <img src="music_app.png" alt="Django Music app"/>
+        </div>
+        <div class="divider"></div>
+        <div class="project-media">
+            <img src="music_app_api.png" alt="Django REST app screenshot"/>
+        </div>
+    </div>
+
+    <div class="project-card fade-in">
+        <div class="project-body">
+            <div class="project-tech">
+                <span class="tech-badge"><img src="django.png" alt="Django"/>Django</span>
+                <span class="tech-badge"><img src="bootstrap.png" alt="Bootstrap"/>Bootstrap</span>
+                <span class="tech-badge"><img src="postgresql.png" alt="PostgreSQL"/>PostgreSQL</span>
+            </div>
+            <div class="project-title">Django CRUD project</div>
+            <p class="project-desc">
+                Another Django testing project with Bootstrap frontend and PostgreSQL database.
+                This one extends basic CRUD functionality with a delete option for each record
+                in the database, allowing full management of stored objects.
+            </p>
+        </div>
+        <div class="project-media">
+            <video width="1280" height="720" autoplay loop muted playsinline>
+                <source src="smart.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <div class="project-card fade-in">
+        <div class="project-body">
+            <div class="project-tech">
+                <span class="tech-badge"><img src="django.png" alt="Django"/>Django</span>
+                <span class="tech-badge"><img src="bootstrap.png" alt="Bootstrap"/>Bootstrap</span>
+                <span class="tech-badge"><img src="postgresql.png" alt="PostgreSQL"/>PostgreSQL</span>
+                <span class="tech-badge"><img src="chartjs.png" alt="Chart.js"/>Chart.js</span>
+            </div>
+            <div class="project-title">Smart Solar Client Panel</div>
+            <p class="project-desc">
+                My largest and most complex project — a full client portal built on top of a
+                CRM provider's API for the company I worked at. It replaces the standard
+                inverter-manufacturer dashboards with a unified, user-friendly interface.
+            </p>
+            <ul class="project-features">
+                <li>Fetches client data from the CRM API and displays it in a structured panel.</li>
+                <li>Retrieves documents stored in the CRM — if a document does not exist there, it does not appear in the panel either.</li>
+                <li>Payment documents are fully downloadable. The panel has its own PDF generation engine that fills document templates with CRM data on the fly.</li>
+                <li>A dashboard tab visualises client data using Chart.js, providing a clearer view than the default inverter apps.</li>
+                <li>Users can submit support questions by topic — the panel routes each question as an email to the appropriate department in the CRM.</li>
+            </ul>
+        </div>
+        <div class="project-media">
+            <video width="1280" height="720" autoplay loop muted playsinline>
+                <source src="smartsolarapp.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
 
 
-</div>   
+<div class="project-card fade-in">
+        <div class="project-body">
+            <div class="project-tech">
+                <span class="tech-badge"><img src="railway.svg" alt="Railway"/>Railway</span>
+                <span class="tech-badge"><img src="FastAPI.png" alt="FastAPI"/>FastAPI</span>
+                <span class="tech-badge"><img src="250px-Celery_logo.png" alt="Celery"/>Celery</span>
+                <span class="tech-badge"><img src="icons8-redis-48.png" alt="Redis"/>Redis</span>
+                <span class="tech-badge"><img src="postgresql.png" alt="PostgreSQL"/>PostgreSQL</span>
+                <span class="tech-badge"><img src="react-brands-solid-full.svg" alt="React"/>React</span>
+            </div>
+            <div class="project-title">PV-Monitor</div>
+            <p class="project-desc">
+                My personal project to monitor and display the daily production of solar panels.
+                It is build on top of external API integration. Self hosted on Railway cloud.
+                Aplication utilize Celery workers to run scheduled tasks and Redis broker.Finally 
+                saves data to the PostgreSQL database. Frontend is maintained by React. Also includes
+                API to access data.
+            </p>
+
+        </div>
+        <div class="project-media">
+            <video width="1280" height="720" autoplay loop muted playsinline>
+                <source src="PV-Monitor.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
 
 
 
+</div>
 
- 
+<footer>
+    <div class="social-links">
+        <a href="https://www.linkedin.com/in/marcin-wiaderkowicz-060422147/" class="social-link" title="LinkedIn"><img src="linkedin.png" alt="LinkedIn"/></a>
+        <a href="https://github.com/ycine" class="social-link" title="GitHub"><img src="github.png" alt="GitHub"/></a>
+        <a href="mailto:marscink@gmail.com" class="social-link" title="Email"><img src="mail.png" alt="Email"/></a>
+    </div>
+    <p class="footer-copy">Icons from <a href="https://www.flaticon.com/" style="color:inherit">Flaticon</a> &amp; <a href="https://www.icons8.com/" style="color:inherit">Icons8</a></p>
+</footer>
+
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((e, i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 100); });
+    }, { threshold: 0.05 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
 </body>
+</html>

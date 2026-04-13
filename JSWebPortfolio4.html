@@ -2,63 +2,141 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Marcin Wiaderkowicz - photovoltaic projects</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photovoltaic Projects – Marcin Wiaderkowicz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --ink: #1a1a1a; --ink-muted: #555; --ink-faint: #999;
+            --bg: #f8f6f1; --bg-card: #fff; --accent: #2a5caa;
+            --accent-light: #e8eef8; --border: rgba(0,0,0,0.08);
+            --radius: 16px;
+            --font-display: 'DM Serif Display', serif;
+            --font-body: 'DM Sans', sans-serif;
+        }
+        html { scroll-behavior: smooth; }
+        body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.6; min-height: 100vh; }
 
-<link rel="stylesheet" href="WebPortfolio3.css" type="text/css"/>
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; gap: 8px; padding: 18px 40px; background: rgba(248,246,241,0.88); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+        nav a { text-decoration: none; color: var(--ink-muted); font-size: 14px; font-weight: 400; padding: 6px 14px; border-radius: 100px; transition: all 0.2s; }
+        nav a:hover, nav a.active { color: var(--accent); background: var(--accent-light); }
+        nav .logo { font-family: var(--font-display); font-size: 18px; color: var(--ink); margin-right: auto; padding: 0; background: none; }
+        nav .logo:hover { background: none; color: var(--accent); }
 
-    
+        .page-header { padding: 140px 40px 60px; max-width: 900px; margin: 0 auto; }
+        .page-tag { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 20px; }
+        .page-tag::before { content: ''; display: block; width: 28px; height: 1.5px; background: var(--accent); }
+        h1 { font-family: var(--font-display); font-size: clamp(36px, 5vw, 60px); line-height: 1.1; color: var(--ink); margin-bottom: 20px; }
+        .page-intro { font-size: 18px; color: var(--ink-muted); max-width: 660px; line-height: 1.75; }
 
+        .projects { max-width: 1400px; margin: 0 auto; padding: 0 40px 120px; display: flex; flex-direction: column; gap: 60px; }
+
+        .project-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: box-shadow 0.25s; }
+        .project-card:hover { box-shadow: 0 12px 40px rgba(42,92,170,0.10); }
+        .project-body { padding: 36px 40px 32px; }
+
+        .project-tech { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+        .tech-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 100px; background: var(--accent-light); color: var(--accent); font-size: 12px; font-weight: 500; }
+        .tech-badge img { width: 16px; height: 16px; object-fit: contain; }
+
+        .project-title { font-family: var(--font-display); font-size: 26px; color: var(--ink); margin-bottom: 14px; }
+        .project-desc { font-size: 16px; color: var(--ink-muted); line-height: 1.75; }
+
+        .project-media { border-top: 1px solid var(--border); }
+        .project-media video, .project-media img { display: block; width: 100%; height: auto; }
+
+        footer { border-top: 1px solid var(--border); padding: 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; max-width: 1400px; margin: 0 auto; }
+        .social-links { display: flex; gap: 12px; }
+        .social-link { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border); background: var(--bg-card); transition: all 0.2s; }
+        .social-link:hover { border-color: var(--accent); background: var(--accent-light); transform: translateY(-2px); }
+        .social-link img { width: 22px; height: 22px; object-fit: contain; }
+        .footer-copy { font-size: 12px; color: var(--ink-faint); }
+
+        .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .fade-in.visible { opacity: 1; transform: none; }
+    </style>
 </head>
 <body>
-<div id="main_container">  
 
-    <div class="glowne2"></div>
-    <a class="ai" href="index.html" style="text-decoration: none">
-    <div class="opcje"> Main page</div></a>
+<nav>
+    <a class="logo" href="index.html">MW</a>
+    <a href="index.html">Home</a>
+    <a href="JSWebPortfolio2.html">GIS</a>
+    <a href="JSWebPortfolio3.html">Programming</a>
+    <a class="active" href="JSWebPortfolio4.html">Photovoltaic</a>
+</nav>
 
-    <div id="glowne1" class="glowne1">
-        Some of my projects while working as a Photovoltaic designer
+<div class="page-header">
+    <div class="page-tag">Projects</div>
+    <h1>Photovoltaic</h1>
+    <p class="page-intro">
+        A selection of projects from my time working as a photovoltaic designer —
+        covering both ground-mounted installations and rooftop commercial systems,
+        designed using Aurora Solar and PV SOL Premium.
+    </p>
+</div>
+
+<div class="projects">
+
+    <div class="project-card fade-in">
+        <div class="project-body">
+            <div class="project-tech">
+                <span class="tech-badge"><img src="pvsol.png" alt="PV SOL"/>PV SOL Premium</span>
+            </div>
+            <div class="project-title">Ground-mounted Installation</div>
+            <p class="project-desc">
+                One of my first ground-mounted photovoltaic installations — designed and simulated
+                in PV SOL Premium. The project covers system layout, shading analysis and
+                energy yield estimation.
+            </p>
+        </div>
+        <div class="project-media">
+            <video width="1280" height="720" autoplay loop muted playsinline>
+                <source src="pvsol.mp4" type="video/mp4">
+            </video>
+        </div>
     </div>
 
-
-
-    <div id="qgis" class="glowne1 glowne2">
-            One of my first onground installation
-    </div>
-    <br>
-
-    <div  class="wideo1 ">
-        <video class="video"  width="1280" height="720" autoplay loop muted>
-            <source src="pvsol.mp4" type="video/mp4" >
-                <!-- width="1848" height="830"  -->
-        </video>
-    </div>
-
-    <br>
-    <br>
-    <div class='hr'></div>
-    <br>
-    <br>
-
-    <div id="qgis" class="glowne1 glowne2">
-        Here we have whole building created with building design, and Really appriopriate trees with LIDAR technology
-    </div>
-    <br>
-    <div  class="wideo1">
-        <video class="video " width="1280" height="720" autoplay loop muted >
-            <source src="aurora.mp4" type="video/mp4" >
-        </video>
+    <div class="project-card fade-in">
+        <div class="project-body">
+            <div class="project-tech">
+                <span class="tech-badge"><img src="aurora.png" alt="Aurora Solar"/>Aurora Solar</span>
+                <span class="tech-badge">LIDAR</span>
+            </div>
+            <div class="project-title">Commercial Rooftop with LIDAR Modelling</div>
+            <p class="project-desc">
+                A commercial rooftop design created in Aurora Solar. The model includes a full
+                3D building reconstruction from architectural plans, combined with precise tree
+                modelling using LIDAR data — allowing accurate shading simulation throughout
+                the year.
+            </p>
+        </div>
+        <div class="project-media">
+            <video width="1280" height="720" autoplay loop muted playsinline>
+                <source src="aurora.mp4" type="video/mp4">
+            </video>
+        </div>
     </div>
 
-   
-    <div id="koncowy">
-        
+</div>
+
+<footer>
+    <div class="social-links">
+        <a href="https://www.linkedin.com/in/marcin-wiaderkowicz-060422147/" class="social-link" title="LinkedIn"><img src="linkedin.png" alt="LinkedIn"/></a>
+        <a href="https://github.com/ycine" class="social-link" title="GitHub"><img src="github.png" alt="GitHub"/></a>
+        <a href="mailto:marscink@gmail.com" class="social-link" title="Email"><img src="mail.png" alt="Email"/></a>
     </div>
- 
-</div>   
+    <p class="footer-copy">Icons from <a href="https://www.flaticon.com/" style="color:inherit">Flaticon</a> &amp; <a href="https://www.icons8.com/" style="color:inherit">Icons8</a></p>
+</footer>
 
-
-
-
- 
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((e, i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 100); });
+    }, { threshold: 0.05 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
 </body>
+</html>

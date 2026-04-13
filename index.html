@@ -2,113 +2,399 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Marcin Wiaderkowicz – GIS specialist, Python developer and photovoltaic designer based in Warsaw/Łódź, Poland.">
     <title>Marcin Wiaderkowicz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-<link rel="stylesheet" href="WebPortfolio1.css" type="text/css"/>
+        :root {
+            --ink: #1a1a1a;
+            --ink-muted: #555;
+            --ink-faint: #999;
+            --bg: #f8f6f1;
+            --bg-card: #fff;
+            --accent: #2a5caa;
+            --accent-light: #e8eef8;
+            --border: rgba(0,0,0,0.08);
+            --radius: 16px;
+            --font-display: 'DM Serif Display', serif;
+            --font-body: 'DM Sans', sans-serif;
+        }
 
+        html { scroll-behavior: smooth; }
 
+        body {
+            background: var(--bg);
+            color: var(--ink);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
 
-<!-- <script src="WebPortfolio2.js"></script>
-<script src="WebPortfolio3.js"></script> -->
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 18px 40px;
+            background: rgba(248,246,241,0.88);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+        nav a {
+            text-decoration: none;
+            color: var(--ink-muted);
+            font-size: 14px;
+            font-weight: 400;
+            padding: 6px 14px;
+            border-radius: 100px;
+            transition: all 0.2s;
+        }
+        nav a:hover, nav a.active {
+            color: var(--accent);
+            background: var(--accent-light);
+        }
+        nav .logo {
+            font-family: var(--font-display);
+            font-size: 18px;
+            color: var(--ink);
+            margin-right: auto;
+            padding: 0;
+            background: none;
+        }
+        nav .logo:hover { background: none; color: var(--accent); }
 
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 120px 40px 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 28px;
+        }
+        .hero-tag::before {
+            content: '';
+            display: block;
+            width: 28px;
+            height: 1.5px;
+            background: var(--accent);
+        }
+        h1 {
+            font-family: var(--font-display);
+            font-size: clamp(44px, 7vw, 80px);
+            line-height: 1.05;
+            color: var(--ink);
+            margin-bottom: 32px;
+            letter-spacing: -0.02em;
+        }
+        .hero p {
+            font-size: 18px;
+            color: var(--ink-muted);
+            max-width: 640px;
+            line-height: 1.75;
+            margin-bottom: 16px;
+        }
+        .hero-cta {
+            display: flex;
+            gap: 12px;
+            margin-top: 44px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 100px;
+            font-size: 15px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+            border: 1.5px solid var(--accent);
+        }
+        .btn-primary:hover { background: #1e4a90; border-color: #1e4a90; transform: translateY(-1px); }
+        .btn-secondary {
+            background: transparent;
+            color: var(--ink);
+            border: 1.5px solid rgba(0,0,0,0.15);
+        }
+        .btn-secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+
+        /* CANVAS */
+        .canvas-area {
+            display: flex;
+            justify-content: center;
+            margin: 0;
+        }
+        canvas { display: inline-block; }
+
+        /* SECTION */
+        section {
+            padding: 16px 40px 100px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .section-label {
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--ink-faint);
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* TOOL GRID */
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        @media (max-width: 700px) { .tool-grid { grid-template-columns: 1fr; } }
+
+        .tool-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 44px 40px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.25s;
+            display: block;
+            position: relative;
+            overflow: hidden;
+        }
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--accent-light) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tool-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(42,92,170,0.12);
+        }
+        .tool-card:hover::before { opacity: 1; }
+
+        .tool-card-header {
+            font-family: var(--font-display);
+            font-size: 30px;
+            color: var(--accent);
+            margin-bottom: 28px;
+            position: relative;
+        }
+        .tool-card-arrow {
+            position: absolute;
+            top: 28px;
+            right: 28px;
+            font-size: 20px;
+            color: var(--accent);
+            opacity: 0;
+            transition: all 0.2s;
+            transform: translate(-4px, 4px);
+        }
+        .tool-card:hover .tool-card-arrow { opacity: 1; transform: translate(0,0); }
+
+        .tool-icons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            position: relative;
+        }
+        .tool-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            width: 64px;
+        }
+        .tool-icon img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+        .tool-icon span {
+            font-size: 12px;
+            color: var(--ink-faint);
+            text-align: center;
+        }
+
+        /* FOOTER */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .social-links { display: flex; gap: 12px; }
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            transition: all 0.2s;
+        }
+        .social-link:hover { border-color: var(--accent); background: var(--accent-light); transform: translateY(-2px); }
+        .social-link img { width: 22px; height: 22px; object-fit: contain; }
+        .footer-copy { font-size: 12px; color: var(--ink-faint); }
+
+        /* FADE IN */
+        .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .fade-in.visible { opacity: 1; transform: none; }
+    </style>
 </head>
 <body>
 
+<nav>
+    <a class="logo" href="index.html">MW</a>
+    <a class="active" href="index.html">Home</a>
+    <a href="JSWebPortfolio2.html">GIS</a>
+    <a href="JSWebPortfolio3.html">Programming</a>
+    <a href="JSWebPortfolio4.html">Photovoltaic</a>
+</nav>
 
-
-<div class="main_container">    
-
-    <a class="ai" href="index.html" style="text-decoration: none">
-    <div class="opcje snap"> Main page</div></a>
-    <a class="ai" href="JSWebPortfolio2.html" style="text-decoration: none">
-    <div class="opcje">Projects GIS</div></a>
-    <a class="ai" href="JSWebPortfolio3.html" style="text-decoration: none">
-    <div class="opcje">Projects Programming</div></a>
-    <a class="ai" href="JSWebPortfolio4.html" style="text-decoration: none">
-        <div class="opcje">Projects Photovoltaic</div></a>
-    <div class='cent'>
-        <canvas id="myCanvas"></canvas>
-        <canvas id="myCanvas1"></canvas>
-        <canvas id="myCanvas2"></canvas>
-        <script src="WebPortfolio1.js"></script>
+<div class="hero">
+    <div class="hero-tag">Portfolio · Warsaw/Łódź, Poland</div>
+    <h1>Marcin<br>Wiaderkowicz</h1>
+    <p>
+        GIS specialist, Python developer and photovoltaic designer. I enjoy solving real-world problems
+        by bridging spatial data, web applications and automation.
+    </p>
+    <p>
+        I studied Geoinformation at the University of Łódź. I have worked with water and sewer network
+        vectorisation, enterprise database management, Python automation scripts and SaaS-delivered web GIS.
+        I have also contributed to renewable energy projects as a photovoltaic designer for both small
+        power plants and commercial installations.
+    </p>
+    <p>
+        Outside of work I build personal projects in Python, JavaScript, HTML and CSS — always looking
+        for ways to automate repetitive tasks and improve workflows.
+    </p>
+    <div class="hero-cta">
+        <a href="JSWebPortfolio3.html" class="btn btn-primary">View Projects ↓</a>
+        <a href="mailto:marscink@gmail.com" class="btn btn-secondary">Get in Touch</a>
     </div>
-
-
-    <div id="glowne1">
-        Hello I am Marcin. I studied Geoinformation at university of Łódź in Poland. I have worked  as a GIS specialist
-        vectorising water and sewer networks, managing enterprise databases, creating Python scripts for automation
-        and lastly serve it as a web based application in Saas model.
-        
-        I have been included in renewable energy projects which gives me opportunity to work as a photovoltaic designer
-        for smaller power plants and then in typical commercial installations.
-        
-        After my work I am go back to my own programming projects in Python, HTML, CSS and JS and others (depend on needs).
-        I really like to find out ways to improve work by writing scripts and tools for automate repeatable tasks.
-
-        If u think it is quite intresting what i am doing please find out more in my projects section down below !
-    </div>
-   
-    <div id="projektytytul">
-        These are my tools
-    </div>
-   
-    <div id="projekty" class="snap">
-        <a href="JSWebPortfolio3.html" style="text-decoration: none"> 
-        <div id="development"class="pro" >
-            <div id="header1">Programming</div>      
-            <div class="colum"><img src="python.png" /><div class="description">Python</div></div>
-            <div class="colum"><img src="css3.png"/><div class="description">CSS</div> </div>
-            <div class="colum"><img src="html.png"/><div class="description">HTML</div></div>
-            <div class="colum"><img src="javascript.png"/><div class="description">JS</div></div>
-            <div class="colum"><img src="postgresql.png"/><div class="description">PostgreSql</div></div>
-            <div class="colum"><img src="git.png"/><div class="description">GIT</div> </div>
-            <div class="colum"><img src="visualstudio.png"/><div class="description">VisualStudio</div></div> 
-            <div class="colum"><img src="pycharm.png"/><div class="description">PyCharm</div></div>
-        </div>
-        </a>  
-        <a href="JSWebPortfolio2.html" style="text-decoration: none">  
-        <div id="gis" class="pro">
-            <div id="header2">GIS</div>
-            <div class="colum"><img src="ArcGIS.png" width="48px" height="48px"/><div class="description">Arcmap</div> </div >
-            <div class="colum"><img src="Qgis.png" width="48px" height="48px"/><div class="description">QGIS</div></div>
-            <div class="colum"><img src="autocad.png"/><div class="description">AutocadMap</div></div>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-        </div>
-        </a>
-        <a href="JSWebPortfolio4.html" style="text-decoration: none">  
-            <div id="gis" class="pro">
-                <div id="header2">Photovoltaic</div>
-                <div class="colum"><img src="aurora.png" width="48px" height="48px"/><div class="description">Aurora solar</div> </div >
-                <div class="colum"><img src="pvsol.png" width="48px" height="48px"/><div class="description">PV SOL premium</div></div>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-            </div>
-            </a>
-    </div>
- 
 </div>
-<div id="social1">
-    <!-- <div class="social"> <a href="https://www.facebook.com/marcin.wiaderkowicz"><img  src="facebook.png" height="48" width="48" ></img></a></div> -->
-    <div class="social"> <a href="https://www.linkedin.com/in/marcin-wiaderkowicz-060422147/"><img  src="linkedin.png" height="48" width="48" ></img></a></div>
-    <div class="social"> <a href="https://github.com/ycine"><img  src="github.png" height="48" width="48" ></img></a></div> 
-    <div class="social"> <a href="mailto:marscink@gmail.com"><img  src="mail.png" height="48" width="48" ></img></a></div> 
 
-    <div class="madeby">Icons  from <a href="https://www.flaticon.com/"   title="Flaticon">www.flaticon.com</a> and <a href="https://www.icons8.com/"   title="icons8.com">www.icons8.com</a></div>
-</div>  
+<div class="canvas-area">
+    <canvas id="myCanvas"></canvas>
+    <canvas id="myCanvas1"></canvas>
+    <canvas id="myCanvas2"></canvas>
+    <script src="WebPortfolio1.js"></script>
+</div>
 
+<section>
+    <div class="section-label">Areas of expertise</div>
+    <div class="tool-grid">
+
+        <a href="JSWebPortfolio3.html" class="tool-card fade-in">
+            <div class="tool-card-arrow">↗</div>
+            <div class="tool-card-header">Programming</div>
+            <div class="tool-icons">
+                <div class="tool-icon"><img src="python.png" alt="Python"/><span>Python</span></div>
+                <div class="tool-icon"><img src="css3.png" alt="CSS"/><span>CSS</span></div>
+                <div class="tool-icon"><img src="html.png" alt="HTML"/><span>HTML</span></div>
+                <div class="tool-icon"><img src="javascript.png" alt="JavaScript"/><span>JS</span></div>
+                <div class="tool-icon"><img src="postgresql.png" alt="PostgreSQL"/><span>PostgreSQL</span></div>
+                <div class="tool-icon"><img src="git.png" alt="Git"/><span>Git</span></div>
+                <div class="tool-icon"><img src="visualstudio.png" alt="VS Code"/><span>VS Code</span></div>
+                <div class="tool-icon"><img src="pycharm.png" alt="PyCharm"/><span>PyCharm</span></div>
+            </div>
+        </a>
+
+        <a href="JSWebPortfolio2.html" class="tool-card fade-in">
+            <div class="tool-card-arrow">↗</div>
+            <div class="tool-card-header">GIS</div>
+            <div class="tool-icons">
+                <div class="tool-icon"><img src="ArcGIS.png" alt="ArcGIS"/><span>ArcMap</span></div>
+                <div class="tool-icon"><img src="Qgis.png" alt="QGIS"/><span>QGIS</span></div>
+                <div class="tool-icon"><img src="autocad.png" alt="AutoCAD"/><span>AutoCAD Map</span></div>
+            </div>
+        </a>
+
+        <a href="JSWebPortfolio4.html" class="tool-card fade-in">
+            <div class="tool-card-arrow">↗</div>
+            <div class="tool-card-header">Photovoltaic</div>
+            <div class="tool-icons">
+                <div class="tool-icon"><img src="aurora.png" alt="Aurora Solar"/><span>Aurora Solar</span></div>
+                <div class="tool-icon"><img src="pvsol.png" alt="PV SOL"/><span>PV SOL Premium</span></div>
+            </div>
+        </a>
+
+    </div>
+</section>
+
+<footer>
+    <div class="social-links">
+        <a href="https://www.linkedin.com/in/marcin-wiaderkowicz-060422147/" class="social-link" title="LinkedIn">
+            <img src="linkedin.png" alt="LinkedIn"/>
+        </a>
+        <a href="https://github.com/ycine" class="social-link" title="GitHub">
+            <img src="github.png" alt="GitHub"/>
+        </a>
+        <a href="mailto:marscink@gmail.com" class="social-link" title="Email">
+            <img src="mail.png" alt="Email"/>
+        </a>
+    </div>
+    <p class="footer-copy">Icons from <a href="https://www.flaticon.com/" style="color:inherit">Flaticon</a> &amp; <a href="https://www.icons8.com/" style="color:inherit">Icons8</a></p>
+</footer>
+
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((e, i) => {
+            if (e.isIntersecting) {
+                setTimeout(() => e.target.classList.add('visible'), i * 120);
+            }
+        });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
 
 </body>
+</html>
