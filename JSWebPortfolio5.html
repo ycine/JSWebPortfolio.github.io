@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photovoltaic Projects – Marcin Wiaderkowicz</title>
+    <title>AI – Marcin Wiaderkowicz</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -57,6 +57,35 @@
         .project-media { border-top: 1px solid var(--border); }
         .project-media video, .project-media img { display: block; width: 100%; height: auto; }
 
+
+.project-media2 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 18px;
+}
+
+.project-media3 {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-left: 2vw;
+}
+
+.project-media3 img,
+.project-media3 video {
+    width: 320px;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+}
+
+
+
+
+
         footer { border-top: 1px solid var(--border); padding: 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; max-width: 1400px; margin: 0 auto; }
         .social-links { display: flex; gap: 12px; }
         .social-link { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border); background: var(--bg-card); transition: all 0.2s; }
@@ -72,20 +101,20 @@
 
 <nav>
     <a class="logo" href="index.html">MW</a>
-    <a href="index.html">Home</a>  
+    <a href="index.html">Home</a>
+    
     <a href="JSWebPortfolio3.html">Programming</a>
-    <a href="JSWebPortfolio5.html">AI</a>
-    <a class="active" href="JSWebPortfolio4.html">Renewable energy</a>
+    <a class="active" href="JSWebPortfolio5.html">AI</a>
+    <a href="JSWebPortfolio4.html">Renewable energy</a>
     <a href="JSWebPortfolio2.html">GIS</a>
 </nav>
 
 <div class="page-header">
     <div class="page-tag">Projects</div>
-    <h1>Renewable energy</h1>
+    <h1>AI</h1>
     <p class="page-intro">
-        A selection of projects from my time working as a photovoltaic designer —
-        covering both ground-mounted installations and rooftop commercial systems,
-        designed using Aurora Solar and PV SOL Premium.
+        As a natural part of automating the processes, I have also worked with AI agents, 
+        they are taking the automation to the another dimension. 
     </p>
 </div>
 
@@ -94,44 +123,43 @@
     <div class="project-card fade-in">
         <div class="project-body">
             <div class="project-tech">
-                <span class="tech-badge"><img src="pvsol.png" alt="PV SOL"/>PV SOL Premium</span>
+                <span class="tech-badge"><img src="Langchain.png" alt="Langchain"/>Langchain</span>
+                <span class="tech-badge"><img src="langgraph-color.png" alt="OpenAI"/>Langgraph</span>
             </div>
-            <div class="project-title">Ground-mounted Installation</div>
+            <div class="project-title">Langgraph - agentic document validation</div>
             <p class="project-desc">
-                One of my first ground-mounted photovoltaic installations — designed and simulated
-                in PV SOL Premium. The project covers system layout, shading analysis and
-                energy yield estimation.
+                Boring repetitive and tedious manual document values checking ? 
+                Not anymore with Langchain and Langgraph.
+                I have created a simple agent that can read the project documentation and check if the values are correct.
             </p>
         </div>
-        <div class="project-media">
-            <video width="1280" height="720" autoplay loop muted playsinline>
-                <source src="pvsol.mp4" type="video/mp4">
-            </video>
+
+            <div class="project-media2">
+
+                <div class="project-media3">
+                    <p style="margin-left: 2vw"; class="project-desc">Langgraph order execution :</p>
+                    <video style="margin-left: 2vw";  autoplay loop muted playsinline>
+                        <source src="langgraph_video1.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="project-media3">
+                    <p class="project-desc">Translated document by translator (human) :</p>
+                    <img src="oryg1.png" alt="oryg"/>
+                    <img src="tlum1.png" alt="tlum"/>
+                </div>
+
+                <div class="project-media3">
+                    <p class="project-desc">Founded entities by LLM :</p>
+                    <img src="encje1.png" alt="encje1"/>
+                    <img src="sprawdzone.png" alt="sprawdzone"/>
+                </div>
+
+            </div>
+
         </div>
     </div>
 
-    <div class="project-card fade-in">
-        <div class="project-body">
-            <div class="project-tech">
-                <span class="tech-badge"><img src="aurora.png" alt="Aurora Solar"/>Aurora Solar</span>
-                <span class="tech-badge">LIDAR</span>
-            </div>
-            <div class="project-title">Commercial Rooftop with LIDAR Modelling</div>
-            <p class="project-desc">
-                A commercial rooftop design created in Aurora Solar. The model includes a full
-                3D building reconstruction from architectural plans, combined with precise tree
-                modelling using LIDAR data — allowing accurate shading simulation throughout
-                the year.
-            </p>
-        </div>
-        <div class="project-media">
-            <video width="1280" height="720" autoplay loop muted playsinline>
-                <source src="aurora.mp4" type="video/mp4">
-            </video>
-        </div>
-    </div>
-
-</div>
 
 <footer>
     <div class="social-links">

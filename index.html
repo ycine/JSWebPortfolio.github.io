@@ -160,13 +160,14 @@
             display: flex;
             justify-content: center;
             margin: 0;
+            gap: 52px;
         }
         canvas { display: inline-block; }
 
         /* SECTION */
         section {
             padding: 16px 40px 100px;
-            max-width: 1100px;
+            max-width: 1500px;
             margin: 0 auto;
         }
         .section-label {
@@ -190,7 +191,7 @@
         /* TOOL GRID */
         .tool-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 20px;
         }
         @media (max-width: 700px) { .tool-grid { grid-template-columns: 1fr; } }
@@ -303,27 +304,35 @@
 <nav>
     <a class="logo" href="index.html">MW</a>
     <a class="active" href="index.html">Home</a>
-    <a href="JSWebPortfolio2.html">GIS</a>
+    
     <a href="JSWebPortfolio3.html">Programming</a>
-    <a href="JSWebPortfolio4.html">Photovoltaic</a>
+    <a href="JSWebPortfolio5.html">AI </a>
+    <a href="JSWebPortfolio4.html">Renewable energy</a>
+    <a href="JSWebPortfolio2.html">GIS</a>
 </nav>
 
 <div class="hero">
     <div class="hero-tag">Portfolio · Warsaw/Łódź, Poland</div>
-    <h1>Marcin<br>Wiaderkowicz</h1>
-    <p>
-        GIS specialist, Python developer and photovoltaic designer. I enjoy solving real-world problems
-        by bridging spatial data, web applications and automation.
+<h1 style="display:flex; align-items:flex-start; gap:15px;">
+  <span>Marcin<br>Wiaderkowicz</span>
+  <img src="fot1.jpg" alt="fot1"
+       style="width:120px; border-radius:16px; box-shadow:0 4px 8px rgba(0,0,0,0.6); align-self:center;">
+</h1>
+
+  <p>
+       I’m a Python developer with a background in GIS and photovoltaic design. 
+       I focus on building automation, backend tools and AI‑driven workflows that solve practical problems and eliminate repetitive tasks. 
+       My work often bridges spatial data, web applications and system‑level integrations.
     </p>
     <p>
-        I studied Geoinformation at the University of Łódź. I have worked with water and sewer network
-        vectorisation, enterprise database management, Python automation scripts and SaaS-delivered web GIS.
-        I have also contributed to renewable energy projects as a photovoltaic designer for both small
-        power plants and commercial installations.
+        I studied Geoinformation at the University of Łódź and have worked across water and sewer network mapping, 
+        enterprise database management, Python automation and SaaS‑based web GIS platforms. 
+        I also contributed to renewable energy projects as a photovoltaic designer for both small systems and commercial installations.
     </p>
     <p>
-        Outside of work I build personal projects in Python, JavaScript, HTML and CSS — always looking
-        for ways to automate repetitive tasks and improve workflows.
+        In addition to GIS and PV work, I’ve developed EMS software components and integrated industrial devices using Modbus, MQTT and TCP/IP.
+         I build tools for monitoring, diagnostics and data processing in energy systems, and continue to explore LLMs, 
+         agents and workflow orchestration through personal projects in Python and JavaScript
     </p>
     <div class="hero-cta">
         <a href="JSWebPortfolio3.html" class="btn btn-primary">View Projects ↓</a>
@@ -333,8 +342,9 @@
 
 <div class="canvas-area">
     <canvas id="myCanvas"></canvas>
-    <canvas id="myCanvas1"></canvas>
+    <canvas id="myCanvasAI"></canvas> 
     <canvas id="myCanvas2"></canvas>
+    <canvas id="myCanvas1"></canvas>
     <script src="WebPortfolio1.js"></script>
 </div>
 
@@ -345,36 +355,65 @@
         <a href="JSWebPortfolio3.html" class="tool-card fade-in">
             <div class="tool-card-arrow">↗</div>
             <div class="tool-card-header">Programming</div>
-            <div class="tool-icons">
-                <div class="tool-icon"><img src="python.png" alt="Python"/><span>Python</span></div>
-                <div class="tool-icon"><img src="css3.png" alt="CSS"/><span>CSS</span></div>
-                <div class="tool-icon"><img src="html.png" alt="HTML"/><span>HTML</span></div>
-                <div class="tool-icon"><img src="javascript.png" alt="JavaScript"/><span>JS</span></div>
-                <div class="tool-icon"><img src="postgresql.png" alt="PostgreSQL"/><span>PostgreSQL</span></div>
-                <div class="tool-icon"><img src="git.png" alt="Git"/><span>Git</span></div>
-                <div class="tool-icon"><img src="visualstudio.png" alt="VS Code"/><span>VS Code</span></div>
-                <div class="tool-icon"><img src="pycharm.png" alt="PyCharm"/><span>PyCharm</span></div>
-            </div>
+
+            <ul class="tool-list">
+                <li>Backend Development</li>
+                <li>LLM Engineering</li>
+                <li>API Integrations</li>
+                <li>Data Processing</li>
+                <li>System Automation</li>
+                <li>Version Control</li>
+            </ul>
         </a>
+
+
+        <a href="JSWebPortfolio5.html" class="tool-card fade-in">
+            <div class="tool-card-arrow">↗</div>
+            <div class="tool-card-header">AI</div>
+
+            <ul class="tool-list">
+                <li>LLM Engineering</li>
+                <li>Agent Workflows</li>
+                <li>Tool-Calling & Orchestration</li>
+                <li>Prompt Design & Evaluation</li>
+                <li>API Integrations with LLMs</li>
+            </ul>
+        </a>
+
+
+
+        <a href="JSWebPortfolio4.html" class="tool-card fade-in">
+            <div class="tool-card-arrow">↗</div>
+            <div class="tool-card-header">Renewable Energy</div>
+
+            <ul class="tool-list">
+                <li>PV System Design</li>
+                <li>Energy Modeling</li>
+                <li>Performance Simulation</li>
+                <li>Shading & Irradiance Analysis</li>
+                <li>Technical Documentation</li>
+            </ul>
+        </a>
+
 
         <a href="JSWebPortfolio2.html" class="tool-card fade-in">
             <div class="tool-card-arrow">↗</div>
             <div class="tool-card-header">GIS</div>
-            <div class="tool-icons">
-                <div class="tool-icon"><img src="ArcGIS.png" alt="ArcGIS"/><span>ArcMap</span></div>
-                <div class="tool-icon"><img src="Qgis.png" alt="QGIS"/><span>QGIS</span></div>
-                <div class="tool-icon"><img src="autocad.png" alt="AutoCAD"/><span>AutoCAD Map</span></div>
-            </div>
+
+            <ul class="tool-list">
+                <li>Spatial Analysis</li>
+                <li>Map Automation</li>
+                <li>Geoprocessing Workflows</li>
+                <li>CAD/GIS Integration</li>
+                <li>Utility Network Concepts</li>
+            </ul>
         </a>
 
-        <a href="JSWebPortfolio4.html" class="tool-card fade-in">
-            <div class="tool-card-arrow">↗</div>
-            <div class="tool-card-header">Photovoltaic</div>
-            <div class="tool-icons">
-                <div class="tool-icon"><img src="aurora.png" alt="Aurora Solar"/><span>Aurora Solar</span></div>
-                <div class="tool-icon"><img src="pvsol.png" alt="PV SOL"/><span>PV SOL Premium</span></div>
-            </div>
-        </a>
+
+
+
+
+
 
     </div>
 </section>

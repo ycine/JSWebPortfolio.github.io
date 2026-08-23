@@ -1,4 +1,4 @@
-console.log('witaj')
+
 var canvas = document.getElementById("myCanvas");
 
 var ctx = canvas.getContext("2d");
@@ -903,3 +903,108 @@ ctx2.clearRect(0, 0, canvas.width, canvas.height);
 }
 interva2()
 // dx2 = setInterval(interva2,7000) 
+
+
+var canvasAI = document.getElementById("myCanvasAI");
+var ctxAI = canvasAI.getContext("2d");
+
+function aiNeuron(x, y, r, color) {
+    ctxAI.beginPath();
+    ctxAI.arc(x, y, r, 0, Math.PI * 2);
+    ctxAI.strokeStyle = color;
+    ctxAI.lineWidth = 2;
+    ctxAI.stroke();
+}
+
+function aiPulse(x, y, r, color) {
+    ctxAI.beginPath();
+    ctxAI.arc(x, y, r + 3, 0, Math.PI * 2);
+    ctxAI.strokeStyle = color;
+    ctxAI.lineWidth = 1;
+    ctxAI.stroke();
+}
+
+function aiLink(x1, y1, x2, y2, color) {
+    ctxAI.beginPath();
+    ctxAI.moveTo(x1, y1);
+    ctxAI.lineTo(x2, y2);
+    ctxAI.strokeStyle = color;
+    ctxAI.lineWidth = 1;
+    ctxAI.stroke();
+}
+
+function aiCore1() {
+    ctxAI.beginPath();
+    ctxAI.arc(220, 100, 18, 0, 0.8);
+    ctxAI.strokeStyle = "RGB(255,150,0)";
+    ctxAI.lineWidth = 3;
+    ctxAI.stroke();
+}
+
+function aiCore2() {
+    ctxAI.beginPath();
+    ctxAI.arc(220, 100, 18, 0.8, 1.6);
+    ctxAI.strokeStyle = "RGB(255,150,0)";
+    ctxAI.lineWidth = 3;
+    ctxAI.stroke();
+}
+
+function aiCore3() {
+    ctxAI.beginPath();
+    ctxAI.arc(220, 100, 18, 1.6, 2.4);
+    ctxAI.strokeStyle = "RGB(255,150,0)";
+    ctxAI.lineWidth = 3;
+    ctxAI.stroke();
+}
+
+function aiCore4() {
+    ctxAI.beginPath();
+    ctxAI.arc(220, 100, 18, 2.4, 3.2);
+    ctxAI.strokeStyle = "RGB(255,150,0)";
+    ctxAI.lineWidth = 3;
+    ctxAI.stroke();
+}
+
+function aiCore5() {
+    ctxAI.beginPath();
+    ctxAI.arc(220, 100, 18, 3.2, 4.0);
+    ctxAI.strokeStyle = "RGB(255,150,0)";
+    ctxAI.lineWidth = 3;
+    ctxAI.stroke();
+}
+
+function aiInterval() {
+
+    ctxAI.clearRect(0, 0, canvasAI.width, canvasAI.height);
+
+    setTimeout(() => aiNeuron(60, 60, 8, "RGB(0,120,255)"), 300);
+    setTimeout(() => aiNeuron(60, 100, 8, "RGB(0,120,255)"), 500);
+    setTimeout(() => aiNeuron(60, 140, 8, "RGB(0,120,255)"), 700);
+
+    setTimeout(() => aiPulse(60, 60, 8, "RGB(0,200,255)"), 900);
+    setTimeout(() => aiPulse(60, 100, 8, "RGB(0,200,255)"), 1100);
+    setTimeout(() => aiPulse(60, 140, 8, "RGB(0,200,255)"), 1300);
+
+    setTimeout(() => aiNeuron(140, 80, 10, "RGB(0,200,155)"), 1500);
+    setTimeout(() => aiNeuron(140, 120, 10, "RGB(0,200,155)"), 1700);
+
+    setTimeout(() => aiLink(60, 60, 140, 80, "RGB(200,100,55)"), 1900);
+    setTimeout(() => aiLink(60, 100, 140, 80, "RGB(200,100,55)"), 2100);
+    setTimeout(() => aiLink(60, 140, 140, 80, "RGB(200,100,55)"), 2300);
+
+    setTimeout(() => aiLink(60, 60, 140, 120, "RGB(200,100,55)"), 2500);
+    setTimeout(() => aiLink(60, 100, 140, 120, "RGB(200,100,55)"), 2700);
+    setTimeout(() => aiLink(60, 140, 140, 120, "RGB(200,100,55)"), 2900);
+
+    setTimeout(aiCore1, 3500);
+    setTimeout(aiCore2, 3800);
+    setTimeout(aiCore3, 4100);
+    setTimeout(aiCore4, 4400);
+    setTimeout(aiCore5, 4700);
+
+    setTimeout(() => aiLink(140, 80, 220, 100, "RGB(255,150,0)"), 5000);
+    setTimeout(() => aiLink(140, 120, 220, 100, "RGB(255,150,0)"), 5200);
+}
+
+aiInterval();
+// setInterval(aiInterval, 7000);
